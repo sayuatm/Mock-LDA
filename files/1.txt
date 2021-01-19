@@ -1,1 +1,5 @@
-ball ball ball planet galaxy
+The purpose of this course is to provide a broad overview of many areas of complier design,
+including: High-level programming language specifications; Lexical and syntactics structure,
+regular expression, finite automata and lexical analyser; Context-free grammars and parsing; LR
+parsers; Symbol tables; Storage allocation; Code optimization and generation.
+High-level programming language specification. Lexical and syntactic structure, regular expression, finite automata, and lexical analyzer. Context-free grammars and parsing. LR parsers. Symbol tables. Storage allocation. Code optimization and generation.

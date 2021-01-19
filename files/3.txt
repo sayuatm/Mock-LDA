@@ -1,1 +1,7 @@
-planet planet galaxy planet ball
+This course emphasizes on the core of Java programming that serves as the
+foundation to understanding of all Java technologies such as Java EE and Java ME. Major topics
+include: Java Object-oriented programming(abstraction, interface, polymorphism), Annotation,
+Exception handling, Java I/O, Generic programming, Strings and wrapper class, Java Threads
+and concurrent programming, JDBC, event-driven programming and JavaFX.
+
+Learn to program in the Java programming language. Topics will include the basic building blocks of procedural programming, object-oriented programming, event-oriented programming, graphical user interfaces, simple data structures including arrays and linked lists, and advanced topic including recursion and threads. Problems will be drawn from various science and engineering disciplines.

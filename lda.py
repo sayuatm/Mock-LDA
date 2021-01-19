@@ -1,6 +1,7 @@
 import os
 import sys
 import numpy
+import nltk
 
 
 def build_words():
@@ -10,11 +11,14 @@ def build_words():
 
     for name in files:
         f = open(os.path.join(path, name), 'r')
-        s = f.read().split()
-        word_list += s
-        words[name] = {i: {} for i in range(len(s))}
-        for i in range(len(s)):
-            words[name][i]['word'] = s[i]
+        content = f.read()
+        noun_adj = lambda pos: pos[:2] == 'NN' or pos[:2] == 'JJ'
+        tokenized = nltk.word_tokenize(content)
+        all_nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if noun_adj(pos)]
+        word_list += all_nouns
+        words[name] = {i: {} for i in range(len(all_nouns))}
+        for i in range(len(all_nouns)):
+            words[name][i]['word'] = all_nouns[i]
             words[name][i]['label'] = ''
     distinct_words = list(set(word_list))
 
@@ -51,6 +55,7 @@ def gibbs_sampling(words, k, a, b):
             for w in weight:
                 acc += w
                 box += [acc]
+            # print(acc)
             d = numpy.random.randint(acc)
 
             index = 0
@@ -62,31 +67,31 @@ def gibbs_sampling(words, k, a, b):
             words[doc][el]['label'] = index
 
 
-def get_distribution(vocab, words, k):
-    wt_counter = {word: {i: 0 for i in range(k)} for word in vocab}
+def get_tw_distribution(vocab, words, k):
+    # wt_counter = {word: {i: 0 for i in range(k)} for word in vocab}
     tw_counter = {i: {v: 0 for v in vocab} for i in range(k)}
     for doc in words:
         for word in words[doc]:
-            wt_counter[words[doc][word]['word']][words[doc][word]['label']] += 1
+            # wt_counter[words[doc][word]['word']][words[doc][word]['label']] += 1
             tw_counter[words[doc][word]['label']][words[doc][word]['word']] += 1
-    return wt_counter, tw_counter
+    return tw_counter
 
 
 def main():
     k = int(sys.argv[1])
-    alpha = 50 / k
-    beta = 0.1
-    # beta can be 200 / number of distinct words
     word_bag, vocab = build_words()
+    alpha = 0.2
+    # alpha = 50 / k
+    beta = 0.1
+    # beta = 200 / len(word_bag)
     initial_label(word_bag, k)
     for i in range(int(sys.argv[2])):
         gibbs_sampling(word_bag, k, alpha, beta)
-    wt_distribution, tw_distribution = get_distribution(vocab, word_bag, k)
-    for key, value in wt_distribution.items():
-        print('%r, %r' % (key, value))
-
-    for key, value in tw_distribution.items():
-        print('%r, %r' % (key, value))
+    # wt_distribution, tw_distribution = get_tw_distribution(vocab, word_bag, k)
+    tw_distribution = get_tw_distribution(vocab, word_bag, k)
+    for topic in tw_distribution:
+        result = dict(sorted(tw_distribution[topic].items(), key=lambda item: item[1], reverse=True)[:5])
+        print('topic %r: %r' % (topic, list(result.keys())))
 
 
 if __name__ == '__main__':

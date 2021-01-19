@@ -1,1 +1,11 @@
-referendum planet planet referendum referendum
+Chapter 1. Algorithm Analysis
+Chapter 5. Fundamental Techniques
+Chapter 6. Graphs
+Chapter 7. Weighted Graphs
+Chapter 8. Network Flow and Matching
+Chapter 9. Text Processing
+Chapter 11. Network Algorithms
+Chapter 12. Computational Geometry
+Chapter 13. NP-Completeness
+
+A formal algorithmic language. Measures of complexity for time and space. Worst-case, average-case, and best-case analysis. Lower and upper bounds of algorithms (techniques include comparison trees, adversary arguments, and reduction). P and NP classes. NP-hardness and NP- completeness. Introduction to parallel computational models and algorithms.

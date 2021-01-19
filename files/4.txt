@@ -1,1 +1,17 @@
-planet galaxy referendum planet ball
+Classical cryptosystems, data encryption standards, advanced encryption algorithms, public key cryptosystems, digital signatures, IP security, and web security.
+ Three aspects of information security  
+ The model for network security  
+ The model for network access security  
+ Secret‐key cryptography  
+ Public‐key cryptography  
+ Block ciphers and stream ciphers  
+ Digital signatures  
+ Message authentication codes  
+ Basic Secure Unicast model  
+Classic Encryption Techniques
+ Some basic terminology  
+ Symmetric cipher model  
+ Two requirements for secure use of symmetric encryption  
+ The objective of cryptanalysis and the two general approaches which are  cryptanalytic attack and brute‐force attack
+
+
